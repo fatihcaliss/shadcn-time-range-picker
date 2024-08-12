@@ -31,7 +31,7 @@ Here's a simple example of how to use the TimeRangePicker component in your Reac
 
 ```tsx
 import React from "react";
-import TimeRangePicker from "time-range-picker";
+import TimeRangePicker from "shadcn-time-range-picker";
 
 const App = () => {
   const handleTimeRangeChange = (timeRange: string) => {
