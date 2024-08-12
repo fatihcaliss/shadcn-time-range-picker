@@ -1,17 +1,19 @@
 # TimeRangePicker
 
-A flexible and customizable time range picker component built with React and ShadCN UI. This component allows users to select a start and end time from a list of predefined time options, with extensive customization options.
+A flexible and customizable time range picker component built with React and shadcn/ui. This component allows users to select a start and end time from a list of predefined time options, with extensive customization options.
 
 ## Features
 
 - Select start and end times from a predefined list.
 - Optional automatic sorting of start and end times.
 - Customizable initial start and end times.
-- Adjustable width and height for select items.
-- Optional Apply button with customization options.
-- Adjustable button position (row or column layout).
-- Customizable labels for start and end time selects.
-- Built with ShadCN UI components for a consistent and elegant UI.
+- Adjustable time step for generating time options.
+- Optional Apply button with full customization support.
+- Flexible layout options (row or column).
+- Customizable labels and placeholders for start and end time selects.
+- Built with shadcn/ui components for a consistent and elegant UI.
+- TypeScript support for improved type safety and developer experience.
+- Improved button customization with full support for shadcn/ui Button props.
 
 ## Installation
 
@@ -23,7 +25,7 @@ npm install shadcn-time-range-picker
 
 ## GitHub Repository
 
-```bash
+```
 https://github.com/fatihcaliss/shadcn-time-range-picker
 ```
 
@@ -49,12 +51,14 @@ const App = () => {
         onTimeRangeChange={handleTimeRangeChange}
         sort={true}
         showApplyButton={true}
-        selectWidth="200px"
-        selectHeight="250px"
-        applyButtonText="Save Time Range"
-        buttonPosition="row"
+        layout="row"
         startTimeLabel="Work Start"
         endTimeLabel="Work End"
+        step={15}
+        buttonProps={{
+          variant: "outline",
+          className: "font-semibold",
+        }}
       />
     </div>
   );
@@ -67,23 +71,21 @@ export default App;
 
 The TimeRangePicker component accepts the following props:
 
-| Prop                 | Type                        | Default      | Description                                                     |
-| -------------------- | --------------------------- | ------------ | --------------------------------------------------------------- |
-| initialStartTime     | string                      | "00:00"      | The initial start time.                                         |
-| initialEndTime       | string                      | "23:30"      | The initial end time.                                           |
-| onTimeRangeChange    | (timeRange: string) => void | undefined    | Callback function that gets called when the time range changes. |
-| sort                 | boolean                     | false        | If true, automatically sorts the start and end times.           |
-| showApplyButton      | boolean                     | true         | If true, shows the Apply button.                                |
-| selectWidth          | string                      | "180px"      | Width of the select components.                                 |
-| selectHeight         | string                      | "200px"      | Max height of the select content, enabling scrolling.           |
-| applyButtonText      | string                      | "Apply"      | Text to display on the Apply button.                            |
-| applyButtonClassName | string                      | ""           | Additional CSS classes for the Apply button.                    |
-| customApplyButton    | ReactNode                   | undefined    | Custom Apply button component.                                  |
-| buttonPosition       | 'row' \| 'column'           | 'column'     | Position of the Apply button relative to the time selects.      |
-| startTimeLabel       | string                      | "Start Time" | Label for the start time select.                                |
-| endTimeLabel         | string                      | "End Time"   | Label for the end time select.                                  |
-| startTimePlaceholder | string                      | "00:00"      | Placeholder for the end time select.                            |
-| endTimePlaceholder   | string                      | "00:00"      | Placeholder for the end time select.                            |
+| Prop                 | Type                        | Default             | Description                                                     |
+| -------------------- | --------------------------- | ------------------- | --------------------------------------------------------------- |
+| initialStartTime     | string                      | "00:00"             | The initial start time.                                         |
+| initialEndTime       | string                      | "23:30"             | The initial end time.                                           |
+| onTimeRangeChange    | (timeRange: string) => void | undefined           | Callback function that gets called when the time range changes. |
+| sort                 | boolean                     | false               | If true, automatically sorts the start and end times.           |
+| showApplyButton      | boolean                     | true                | If true, shows the Apply button.                                |
+| layout               | 'row' \| 'column'           | 'row'               | Layout of the component (row or column).                        |
+| startTimeLabel       | string                      | "Start Time"        | Label for the start time select.                                |
+| endTimeLabel         | string                      | "End Time"          | Label for the end time select.                                  |
+| startTimePlaceholder | string                      | "Select start time" | Placeholder for the start time select.                          |
+| endTimePlaceholder   | string                      | "Select end time"   | Placeholder for the end time select.                            |
+| step                 | number                      | 30                  | Time step in minutes for generating time options.               |
+| applyButtonText      | string                      | "Apply"             | Button text                                                     |
+| buttonProps          | ButtonProps                 | undefined           | Props to customize the Apply button (shadcn/ui Button props)    |
 
 ## Example Usage
 
@@ -107,32 +109,38 @@ The TimeRangePicker component accepts the following props:
   onTimeRangeChange={(timeRange) => console.log(timeRange)}
   sort={true}
   showApplyButton={true}
-  selectWidth="220px"
-  selectHeight="300px"
-  applyButtonText="Save Range"
-  applyButtonClassName="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-  buttonPosition="row"
+  layout="column"
   startTimeLabel="Shift Start"
   endTimeLabel="Shift End"
+  startTimePlaceholder="Select shift start"
+  endTimePlaceholder="Select shift end"
+  step={15}
+  buttonProps={{
+    variant: "secondary",
+    size: "sm",
+    className: "font-bold text-primary",
+  }}
 />
 ```
 
-### Using a Custom Apply Button
+## Button Customization
+
+The `buttonProps` prop allows full customization of the Apply button using shadcn/ui Button component props. This includes setting the variant, size, and adding custom classes. For example:
 
 ```tsx
-const CustomButton = ({ onClick, children }) => (
-  <button onClick={onClick} className="custom-button">
-    {children}
-  </button>
-);
-
 <TimeRangePicker
-  onTimeRangeChange={(timeRange) => console.log(timeRange)}
-  showApplyButton={true}
-  customApplyButton={<CustomButton>Custom Apply</CustomButton>}
-  buttonPosition="column"
-/>;
+  // ... other props
+  buttonProps={{
+    variant: "outline",
+    size: "sm",
+    className: "font-semibold text-primary hover:bg-primary/10",
+  }}
+/>
 ```
+
+## Responsive Design
+
+The TimeRangePicker component is designed to be responsive. When the `layout` prop is set to "row", it will automatically switch to a column layout on smaller screens for better mobile user experience.
 
 ## Contributing
 
