@@ -299,7 +299,7 @@ var TimeRangePicker = ({
     }
     return /* @__PURE__ */ import_react.default.createElement(Button, { onClick: handleApply, className: applyButtonClassName }, applyButtonText);
   };
-  return /* @__PURE__ */ import_react.default.createElement("div", { className: `flex flex-col space-y-4` }, /* @__PURE__ */ import_react.default.createElement(
+  return /* @__PURE__ */ import_react.default.createElement(
     "div",
     {
       className: `flex ${buttonPosition === "row" ? "space-x-4" : "space-y-4 flex-col"}`
@@ -311,13 +311,7 @@ var TimeRangePicker = ({
         onValueChange: (value) => handleTimeChange(value, endTime)
       },
       /* @__PURE__ */ import_react.default.createElement(SelectTrigger, { className: `w-[${selectWidth}]` }, /* @__PURE__ */ import_react.default.createElement(SelectValue, { placeholder: startTimePlaceholder })),
-      /* @__PURE__ */ import_react.default.createElement(
-        SelectContent,
-        {
-          className: `max-h-[${selectHeight}] overflow-y-auto`
-        },
-        timeOptions.map((time) => /* @__PURE__ */ import_react.default.createElement(SelectItem, { key: time, value: time }, time))
-      )
+      /* @__PURE__ */ import_react.default.createElement(SelectContent, { className: `max-h-[${selectHeight}] overflow-y-auto` }, timeOptions.map((time) => /* @__PURE__ */ import_react.default.createElement(SelectItem, { key: time, value: time }, time)))
     )),
     /* @__PURE__ */ import_react.default.createElement("div", { className: "flex flex-col" }, /* @__PURE__ */ import_react.default.createElement("label", null, endTimeLabel), /* @__PURE__ */ import_react.default.createElement(
       Select,
@@ -326,15 +320,10 @@ var TimeRangePicker = ({
         onValueChange: (value) => handleTimeChange(startTime, value)
       },
       /* @__PURE__ */ import_react.default.createElement(SelectTrigger, { className: `w-[${selectWidth}]` }, /* @__PURE__ */ import_react.default.createElement(SelectValue, { placeholder: endTimePlaceholder })),
-      /* @__PURE__ */ import_react.default.createElement(
-        SelectContent,
-        {
-          className: `max-h-[${selectHeight}] overflow-y-auto`
-        },
-        timeOptions.map((time) => /* @__PURE__ */ import_react.default.createElement(SelectItem, { key: time, value: time }, time))
-      )
-    ))
-  ), showApplyButton && renderApplyButton());
+      /* @__PURE__ */ import_react.default.createElement(SelectContent, { className: `max-h-[${selectHeight}] overflow-y-auto` }, timeOptions.map((time) => /* @__PURE__ */ import_react.default.createElement(SelectItem, { key: time, value: time }, time)))
+    )),
+    showApplyButton && renderApplyButton()
+  );
 };
 var TimeRangePicker_default = TimeRangePicker;
 
