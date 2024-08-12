@@ -9,6 +9,8 @@ A flexible and customizable time range picker component built with React and Sha
 - Customizable initial start and end times.
 - Adjustable width and height for select items.
 - Optional Apply button with customization options.
+- Adjustable button position (row or column layout).
+- Customizable labels for start and end time selects.
 - Built with ShadCN UI components for a consistent and elegant UI.
 
 ## Installation
@@ -50,6 +52,9 @@ const App = () => {
         selectWidth="200px"
         selectHeight="250px"
         applyButtonText="Save Time Range"
+        buttonPosition="row"
+        startTimeLabel="Work Start"
+        endTimeLabel="Work End"
       />
     </div>
   );
@@ -62,18 +67,21 @@ export default App;
 
 The TimeRangePicker component accepts the following props:
 
-| Prop                 | Type                        | Default   | Description                                                     |
-| -------------------- | --------------------------- | --------- | --------------------------------------------------------------- |
-| initialStartTime     | string                      | "00:00"   | The initial start time.                                         |
-| initialEndTime       | string                      | "23:30"   | The initial end time.                                           |
-| onTimeRangeChange    | (timeRange: string) => void | undefined | Callback function that gets called when the time range changes. |
-| sort                 | boolean                     | false     | If true, automatically sorts the start and end times.           |
-| showApplyButton      | boolean                     | true      | If true, shows the Apply button.                                |
-| selectWidth          | string                      | "180px"   | Width of the select components.                                 |
-| selectHeight         | string                      | "200px"   | Max height of the select content, enabling scrolling.           |
-| applyButtonText      | string                      | "Apply"   | Text to display on the Apply button.                            |
-| applyButtonClassName | string                      | ""        | Additional CSS classes for the Apply button.                    |
-| customApplyButton    | ReactNode                   | undefined | Custom Apply button component.                                  |
+| Prop                 | Type                        | Default      | Description                                                     |
+| -------------------- | --------------------------- | ------------ | --------------------------------------------------------------- |
+| initialStartTime     | string                      | "00:00"      | The initial start time.                                         |
+| initialEndTime       | string                      | "23:30"      | The initial end time.                                           |
+| onTimeRangeChange    | (timeRange: string) => void | undefined    | Callback function that gets called when the time range changes. |
+| sort                 | boolean                     | false        | If true, automatically sorts the start and end times.           |
+| showApplyButton      | boolean                     | true         | If true, shows the Apply button.                                |
+| selectWidth          | string                      | "180px"      | Width of the select components.                                 |
+| selectHeight         | string                      | "200px"      | Max height of the select content, enabling scrolling.           |
+| applyButtonText      | string                      | "Apply"      | Text to display on the Apply button.                            |
+| applyButtonClassName | string                      | ""           | Additional CSS classes for the Apply button.                    |
+| customApplyButton    | ReactNode                   | undefined    | Custom Apply button component.                                  |
+| buttonPosition       | 'row' \| 'column'           | 'column'     | Position of the Apply button relative to the time selects.      |
+| startTimeLabel       | string                      | "Start Time" | Label for the start time select.                                |
+| endTimeLabel         | string                      | "End Time"   | Label for the end time select.                                  |
 
 ## Example Usage
 
@@ -101,6 +109,9 @@ The TimeRangePicker component accepts the following props:
   selectHeight="300px"
   applyButtonText="Save Range"
   applyButtonClassName="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+  buttonPosition="row"
+  startTimeLabel="Shift Start"
+  endTimeLabel="Shift End"
 />
 ```
 
@@ -117,6 +128,7 @@ const CustomButton = ({ onClick, children }) => (
   onTimeRangeChange={(timeRange) => console.log(timeRange)}
   showApplyButton={true}
   customApplyButton={<CustomButton>Custom Apply</CustomButton>}
+  buttonPosition="column"
 />;
 ```
 
