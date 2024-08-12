@@ -109,52 +109,46 @@ const TimeRangePicker: React.FC<TimeRangePickerProps> = ({
   };
 
   return (
-    <div className={`flex flex-col space-y-4`}>
-      <div
-        className={`flex ${
-          buttonPosition === "row" ? "space-x-4" : "space-y-4 flex-col"
-        }`}
-      >
-        <div className="flex flex-col">
-          <label>{startTimeLabel}</label>
-          <Select
-            value={startTime}
-            onValueChange={(value) => handleTimeChange(value, endTime)}
-          >
-            <SelectTrigger className={`w-[${selectWidth}]`}>
-              <SelectValue placeholder={startTimePlaceholder} />
-            </SelectTrigger>
-            <SelectContent
-              className={`max-h-[${selectHeight}] overflow-y-auto`}
-            >
-              {timeOptions.map((time) => (
-                <SelectItem key={time} value={time}>
-                  {time}
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
-        </div>
-        <div className="flex flex-col">
-          <label>{endTimeLabel}</label>
-          <Select
-            value={endTime}
-            onValueChange={(value) => handleTimeChange(startTime, value)}
-          >
-            <SelectTrigger className={`w-[${selectWidth}]`}>
-              <SelectValue placeholder={endTimePlaceholder} />
-            </SelectTrigger>
-            <SelectContent
-              className={`max-h-[${selectHeight}] overflow-y-auto`}
-            >
-              {timeOptions.map((time) => (
-                <SelectItem key={time} value={time}>
-                  {time}
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
-        </div>
+    <div
+      className={`flex ${
+        buttonPosition === "row" ? "space-x-4" : "space-y-4 flex-col"
+      }`}
+    >
+      <div className="flex flex-col">
+        <label>{startTimeLabel}</label>
+        <Select
+          value={startTime}
+          onValueChange={(value) => handleTimeChange(value, endTime)}
+        >
+          <SelectTrigger className={`w-[${selectWidth}]`}>
+            <SelectValue placeholder={startTimePlaceholder} />
+          </SelectTrigger>
+          <SelectContent className={`max-h-[${selectHeight}] overflow-y-auto`}>
+            {timeOptions.map((time) => (
+              <SelectItem key={time} value={time}>
+                {time}
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
+      </div>
+      <div className="flex flex-col">
+        <label>{endTimeLabel}</label>
+        <Select
+          value={endTime}
+          onValueChange={(value) => handleTimeChange(startTime, value)}
+        >
+          <SelectTrigger className={`w-[${selectWidth}]`}>
+            <SelectValue placeholder={endTimePlaceholder} />
+          </SelectTrigger>
+          <SelectContent className={`max-h-[${selectHeight}] overflow-y-auto`}>
+            {timeOptions.map((time) => (
+              <SelectItem key={time} value={time}>
+                {time}
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
       </div>
       {showApplyButton && renderApplyButton()}
     </div>
