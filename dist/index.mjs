@@ -223,7 +223,10 @@ var TimeRangePicker = ({
   selectHeight = "200px",
   applyButtonText = "Apply",
   applyButtonClassName = "",
-  customApplyButton
+  customApplyButton,
+  buttonPosition = "column",
+  startTimeLabel = "Start Time",
+  endTimeLabel = "End Time"
 }) => {
   const [startTime, setStartTime] = useState(initialStartTime);
   const [endTime, setEndTime] = useState(initialEndTime);
@@ -261,23 +264,23 @@ var TimeRangePicker = ({
     }
     return /* @__PURE__ */ React3.createElement(Button, { onClick: handleApply, className: applyButtonClassName }, applyButtonText);
   };
-  return /* @__PURE__ */ React3.createElement("div", { className: "flex flex-col space-y-4" }, /* @__PURE__ */ React3.createElement("div", { className: "flex space-x-4" }, /* @__PURE__ */ React3.createElement(
-    Select,
+  const renderTimeSelect = (value, onChange, label) => /* @__PURE__ */ React3.createElement("div", { className: "flex flex-col space-y-2" }, /* @__PURE__ */ React3.createElement("label", { className: "text-sm font-medium" }, label), /* @__PURE__ */ React3.createElement(Select, { value, onValueChange: onChange }, /* @__PURE__ */ React3.createElement(SelectTrigger, { className: `w-[${selectWidth}]` }, /* @__PURE__ */ React3.createElement(SelectValue, { placeholder: label })), /* @__PURE__ */ React3.createElement(SelectContent, { className: `max-h-[${selectHeight}] overflow-y-auto` }, timeOptions.map((time) => /* @__PURE__ */ React3.createElement(SelectItem, { key: time, value: time }, time)))));
+  return /* @__PURE__ */ React3.createElement(
+    "div",
     {
-      value: startTime,
-      onValueChange: (value) => handleTimeChange(value, endTime)
+      className: `flex ${buttonPosition === "column" ? "flex-col space-y-4" : "flex-row space-x-4"}`
     },
-    /* @__PURE__ */ React3.createElement(SelectTrigger, { className: `w-[${selectWidth}]` }, /* @__PURE__ */ React3.createElement(SelectValue, { placeholder: "Start Time" })),
-    /* @__PURE__ */ React3.createElement(SelectContent, { className: `max-h-[${selectHeight}] overflow-y-auto` }, timeOptions.map((time) => /* @__PURE__ */ React3.createElement(SelectItem, { key: time, value: time }, time)))
-  ), /* @__PURE__ */ React3.createElement(
-    Select,
-    {
-      value: endTime,
-      onValueChange: (value) => handleTimeChange(startTime, value)
-    },
-    /* @__PURE__ */ React3.createElement(SelectTrigger, { className: `w-[${selectWidth}]` }, /* @__PURE__ */ React3.createElement(SelectValue, { placeholder: "End Time" })),
-    /* @__PURE__ */ React3.createElement(SelectContent, { className: `max-h-[${selectHeight}] overflow-y-auto` }, timeOptions.map((time) => /* @__PURE__ */ React3.createElement(SelectItem, { key: time, value: time }, time)))
-  )), showApplyButton && renderApplyButton());
+    /* @__PURE__ */ React3.createElement("div", { className: "flex space-x-4" }, renderTimeSelect(
+      startTime,
+      (value) => handleTimeChange(value, endTime),
+      startTimeLabel
+    ), renderTimeSelect(
+      endTime,
+      (value) => handleTimeChange(startTime, value),
+      endTimeLabel
+    )),
+    showApplyButton && renderApplyButton()
+  );
 };
 var TimeRangePicker_default = TimeRangePicker;
 
