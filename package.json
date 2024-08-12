@@ -1,14 +1,22 @@
 {
   "name": "shadcn-time-range-picker",
-  "version": "1.0.0",
-  "main": "index.js",
+  "version": "1.0.4",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "build": "tsup src/index.tsx --format esm,cjs --dts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fatihcaliss/shadcn-time-range-picker.git"
+  },
   "keywords": [],
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "description": "",
   "devDependencies": {
     "@types/react": "^18.3.3",

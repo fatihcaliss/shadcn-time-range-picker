@@ -1,12 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, ReactNode } from "react";
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "../src/components/Select";
-import { Button } from "../src/components/Button";
+} from "../components/Select";
+import { Button } from "../components/Button";
 
 const generateTimeOptions = () => {
   const options = [];
@@ -24,8 +24,14 @@ const generateTimeOptions = () => {
 interface TimeRangePickerProps {
   initialStartTime?: string;
   initialEndTime?: string;
-  onTimeRangeChange?: (startTime: string, endTime: string) => void;
+  onTimeRangeChange?: (timeRange: string) => void;
   sort?: boolean;
+  showApplyButton?: boolean;
+  selectWidth?: string;
+  selectHeight?: string;
+  applyButtonText?: string;
+  applyButtonClassName?: string;
+  customApplyButton?: ReactNode;
 }
 
 const TimeRangePicker: React.FC<TimeRangePickerProps> = ({
@@ -33,28 +39,33 @@ const TimeRangePicker: React.FC<TimeRangePickerProps> = ({
   initialEndTime = "23:30",
   onTimeRangeChange,
   sort = false,
+  showApplyButton = true,
+  selectWidth = "180px",
+  selectHeight = "200px",
+  applyButtonText = "Apply",
+  applyButtonClassName = "",
+  customApplyButton,
 }) => {
   const [startTime, setStartTime] = useState(initialStartTime);
   const [endTime, setEndTime] = useState(initialEndTime);
   const timeOptions = generateTimeOptions();
 
   const sortTimes = (start: string, end: string) => {
-    if (start > end) {
-      return [end, start];
-    }
-    return [start, end];
+    return start <= end ? [start, end] : [end, start];
   };
 
+  const formatTimeRange = (start: string, end: string) => `${start}-${end}`;
+
   const handleTimeChange = (newStartTime: string, newEndTime: string) => {
-    if (sort) {
-      const [sortedStart, sortedEnd] = sortTimes(newStartTime, newEndTime);
-      setStartTime(sortedStart);
-      setEndTime(sortedEnd);
-      onTimeRangeChange?.(sortedStart, sortedEnd);
-    } else {
-      setStartTime(newStartTime);
-      setEndTime(newEndTime);
-      onTimeRangeChange?.(newStartTime, newEndTime);
+    const [sortedStart, sortedEnd] = sort
+      ? sortTimes(newStartTime, newEndTime)
+      : [newStartTime, newEndTime];
+
+    setStartTime(sortedStart);
+    setEndTime(sortedEnd);
+
+    if (!showApplyButton) {
+      onTimeRangeChange?.(formatTimeRange(sortedStart, sortedEnd));
     }
   };
 
@@ -63,9 +74,29 @@ const TimeRangePicker: React.FC<TimeRangePickerProps> = ({
       const [sortedStart, sortedEnd] = sortTimes(startTime, endTime);
       setStartTime(sortedStart);
       setEndTime(sortedEnd);
-      onTimeRangeChange?.(sortedStart, sortedEnd);
+
+      if (!showApplyButton) {
+        onTimeRangeChange?.(formatTimeRange(sortedStart, sortedEnd));
+      }
     }
   }, [sort]);
+
+  const handleApply = () => {
+    onTimeRangeChange?.(formatTimeRange(startTime, endTime));
+  };
+
+  const renderApplyButton = () => {
+    if (customApplyButton) {
+      return React.cloneElement(customApplyButton as React.ReactElement, {
+        onClick: handleApply,
+      });
+    }
+    return (
+      <Button onClick={handleApply} className={applyButtonClassName}>
+        {applyButtonText}
+      </Button>
+    );
+  };
 
   return (
     <div className="flex flex-col space-y-4">
@@ -74,10 +105,10 @@ const TimeRangePicker: React.FC<TimeRangePickerProps> = ({
           value={startTime}
           onValueChange={(value) => handleTimeChange(value, endTime)}
         >
-          <SelectTrigger className="w-[180px]">
+          <SelectTrigger className={`w-[${selectWidth}]`}>
             <SelectValue placeholder="Start Time" />
           </SelectTrigger>
-          <SelectContent>
+          <SelectContent className={`max-h-[${selectHeight}] overflow-y-auto`}>
             {timeOptions.map((time) => (
               <SelectItem key={time} value={time}>
                 {time}
@@ -89,10 +120,10 @@ const TimeRangePicker: React.FC<TimeRangePickerProps> = ({
           value={endTime}
           onValueChange={(value) => handleTimeChange(startTime, value)}
         >
-          <SelectTrigger className="w-[180px]">
+          <SelectTrigger className={`w-[${selectWidth}]`}>
             <SelectValue placeholder="End Time" />
           </SelectTrigger>
-          <SelectContent>
+          <SelectContent className={`max-h-[${selectHeight}] overflow-y-auto`}>
             {timeOptions.map((time) => (
               <SelectItem key={time} value={time}>
                 {time}
@@ -101,11 +132,7 @@ const TimeRangePicker: React.FC<TimeRangePickerProps> = ({
           </SelectContent>
         </Select>
       </div>
-      <Button
-        onClick={() => console.log(`Selected range: ${startTime} - ${endTime}`)}
-      >
-        Apply
-      </Button>
+      {showApplyButton && renderApplyButton()}
     </div>
   );
 };

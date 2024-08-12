@@ -1,1 +1,3 @@
-// export { default as TimeRangePicker } from "./TimeRangePicker";
+import TimeRangePicker from "./components/TimeRangePicker";
+
+export default TimeRangePicker;
