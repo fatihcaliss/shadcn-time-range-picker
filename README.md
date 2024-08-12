@@ -82,6 +82,8 @@ The TimeRangePicker component accepts the following props:
 | buttonPosition       | 'row' \| 'column'           | 'column'     | Position of the Apply button relative to the time selects.      |
 | startTimeLabel       | string                      | "Start Time" | Label for the start time select.                                |
 | endTimeLabel         | string                      | "End Time"   | Label for the end time select.                                  |
+| startTimePlaceholder | string                      | "00:00"      | Placeholder for the end time select.                            |
+| endTimePlaceholder   | string                      | "00:00"      | Placeholder for the end time select.                            |
 
 ## Example Usage
 
