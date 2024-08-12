@@ -226,7 +226,8 @@ var TimeRangePicker = ({
   endTimePlaceholder = "Select end time",
   layout = "row",
   step = 30,
-  buttonProps
+  buttonProps,
+  labelClassName
 }) => {
   const [startTime, setStartTime] = useState(initialStartTime);
   const [endTime, setEndTime] = useState(initialEndTime);
@@ -271,7 +272,7 @@ var TimeRangePicker = ({
           layout === "column" ? "space-y-4" : "flex flex-col sm:flex-row sm:space-x-4 space-y-4 sm:space-y-0"
         )
       },
-      /* @__PURE__ */ React3.createElement("div", { className: "flex flex-col space-y-2 items-center justify-center" }, startTimeLabel && /* @__PURE__ */ React3.createElement("label", { htmlFor: "start-time" }, startTimeLabel), /* @__PURE__ */ React3.createElement(
+      /* @__PURE__ */ React3.createElement("div", { className: "flex flex-col space-y-2 items-center justify-center" }, startTimeLabel && /* @__PURE__ */ React3.createElement("label", { htmlFor: "start-time", className: labelClassName }, startTimeLabel), /* @__PURE__ */ React3.createElement(
         Select,
         {
           value: startTime,
@@ -280,7 +281,7 @@ var TimeRangePicker = ({
         /* @__PURE__ */ React3.createElement(SelectTrigger, { id: "start-time", className: "w-[180px]" }, /* @__PURE__ */ React3.createElement(SelectValue, { placeholder: startTimePlaceholder })),
         /* @__PURE__ */ React3.createElement(SelectContent, { className: "max-h-[200px] overflow-y-auto" }, timeOptions.map((time) => /* @__PURE__ */ React3.createElement(SelectItem, { key: `start-${time}`, value: time }, time)))
       )),
-      /* @__PURE__ */ React3.createElement("div", { className: "flex flex-col space-y-2 items-center justify-center" }, endTimeLabel && /* @__PURE__ */ React3.createElement("label", { htmlFor: "end-time" }, endTimeLabel), /* @__PURE__ */ React3.createElement(
+      /* @__PURE__ */ React3.createElement("div", { className: "flex flex-col space-y-2 items-center justify-center" }, endTimeLabel && /* @__PURE__ */ React3.createElement("label", { htmlFor: "end-time", className: labelClassName }, endTimeLabel), /* @__PURE__ */ React3.createElement(
         Select,
         {
           value: endTime,
@@ -295,7 +296,7 @@ var TimeRangePicker = ({
       __spreadValues({
         onClick: handleApply,
         className: cn(
-          layout === "column" ? "w-full sm:w-auto" : "w-full sm:w-auto mt-4 sm:mt-0",
+          layout === "column" ? "w-full sm:w-auto" : "w-full sm:w-auto mt-auto sm:mt-auto",
           buttonProps == null ? void 0 : buttonProps.className
         )
       }, buttonProps),

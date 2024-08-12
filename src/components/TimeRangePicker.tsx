@@ -36,6 +36,7 @@ interface TimeRangePickerProps {
   layout?: "row" | "column";
   step?: number;
   buttonProps?: ButtonProps;
+  labelClassName?: string;
 }
 
 const TimeRangePicker: React.FC<TimeRangePickerProps> = ({
@@ -52,6 +53,7 @@ const TimeRangePicker: React.FC<TimeRangePickerProps> = ({
   layout = "row",
   step = 30,
   buttonProps,
+  labelClassName,
 }) => {
   const [startTime, setStartTime] = useState(initialStartTime);
   const [endTime, setEndTime] = useState(initialEndTime);
@@ -112,7 +114,9 @@ const TimeRangePicker: React.FC<TimeRangePickerProps> = ({
       >
         <div className="flex flex-col space-y-2 items-center justify-center">
           {startTimeLabel && (
-            <label htmlFor="start-time">{startTimeLabel}</label>
+            <label htmlFor="start-time" className={labelClassName}>
+              {startTimeLabel}
+            </label>
           )}
           <Select
             value={startTime}
@@ -131,7 +135,11 @@ const TimeRangePicker: React.FC<TimeRangePickerProps> = ({
           </Select>
         </div>
         <div className="flex flex-col space-y-2 items-center justify-center">
-          {endTimeLabel && <label htmlFor="end-time">{endTimeLabel}</label>}
+          {endTimeLabel && (
+            <label htmlFor="end-time" className={labelClassName}>
+              {endTimeLabel}
+            </label>
+          )}
           <Select
             value={endTime}
             onValueChange={(value) => handleTimeChange(startTime, value)}
@@ -155,7 +163,7 @@ const TimeRangePicker: React.FC<TimeRangePickerProps> = ({
           className={cn(
             layout === "column"
               ? "w-full sm:w-auto"
-              : "w-full sm:w-auto mt-4 sm:mt-0",
+              : "w-full sm:w-auto mt-auto sm:mt-auto",
             buttonProps?.className
           )}
           {...buttonProps}
