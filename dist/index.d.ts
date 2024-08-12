@@ -1,4 +1,4 @@
-import React, { ReactNode } from "react";
+import React, { ReactNode } from 'react';
 
 interface TimeRangePickerProps {
   initialStartTime?: string;
@@ -11,6 +11,9 @@ interface TimeRangePickerProps {
   applyButtonText?: string;
   applyButtonClassName?: string;
   customApplyButton?: ReactNode;
+  buttonPosition?: "row" | "column";
+  startTimeLabel?: string;
+  endTimeLabel?: string;
 }
 
 declare const TimeRangePicker: React.FC<TimeRangePickerProps>;
