@@ -261,7 +261,7 @@ var TimeRangePicker = ({
     "div",
     {
       className: cn(
-        "flex items-center justify-center",
+        "flex",
         layout === "column" ? "flex-col space-y-4" : "flex-col sm:flex-row sm:space-x-4 space-y-4 sm:space-y-0"
       )
     },
@@ -296,7 +296,7 @@ var TimeRangePicker = ({
       __spreadValues({
         onClick: handleApply,
         className: cn(
-          layout === "column" ? "w-full sm:w-auto" : "w-full sm:w-auto mt-auto sm:mt-auto",
+          layout === "column" ? "w-full sm:w-auto mt-4 sm:mt-0" : "w-full sm:w-auto mt-auto",
           buttonProps == null ? void 0 : buttonProps.className
         )
       }, buttonProps),

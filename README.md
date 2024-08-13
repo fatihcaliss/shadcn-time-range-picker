@@ -86,6 +86,7 @@ The TimeRangePicker component accepts the following props:
 | step                 | number                      | 30                  | Time step in minutes for generating time options.               |
 | applyButtonText      | string                      | "Apply"             | Button text                                                     |
 | buttonProps          | ButtonProps                 | undefined           | Props to customize the Apply button (shadcn/ui Button props)    |
+| labelClassName       | string                      | undefined           | CSS class(es) to apply to the label elements                    |
 
 ## Example Usage
 
@@ -115,6 +116,7 @@ The TimeRangePicker component accepts the following props:
   startTimePlaceholder="Select shift start"
   endTimePlaceholder="Select shift end"
   step={15}
+  labelClassName="text-primary font-bold"
   buttonProps={{
     variant: "secondary",
     size: "sm",
