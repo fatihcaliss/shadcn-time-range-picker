@@ -2,6 +2,8 @@
 
 A flexible and customizable time range picker component built with React and shadcn/ui. This component allows users to select a start and end time from a list of predefined time options, with extensive customization options.
 
+<img src="https://github.com/fatihcaliss/shadcn-time-range-picker/blob/master/time-range-picker-preview.gif?raw=true" alt="Package Preview" height="300">
+
 ## Features
 
 - Select start and end times from a predefined list.
