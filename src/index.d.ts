@@ -1,4 +1,5 @@
 import React, { ReactNode } from "react";
+import { ButtonProps } from "../dist/additional-types";
 
 export interface TimeRangePickerProps {
   initialStartTime?: string;
@@ -6,14 +7,15 @@ export interface TimeRangePickerProps {
   onTimeRangeChange?: (timeRange: string) => void;
   sort?: boolean;
   showApplyButton?: boolean;
-  selectWidth?: string;
-  selectHeight?: string;
   applyButtonText?: string;
-  applyButtonClassName?: string;
-  customApplyButton?: ReactNode;
-  buttonPosition?: "row" | "column";
   startTimeLabel?: string;
+  startTimePlaceholder?: string;
   endTimeLabel?: string;
+  endTimePlaceholder?: string;
+  layout?: "row" | "column";
+  step?: number;
+  buttonProps?: ButtonProps;
+  labelClassName?: string;
 }
 
 declare const TimeRangePicker: React.FC<TimeRangePickerProps>;

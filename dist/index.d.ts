@@ -1,5 +1,17 @@
-import React, { ReactNode } from "react";
-import { ButtonProps } from "./additional-types";
+import React$1 from 'react';
+
+interface ButtonProps
+  extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  variant?:
+    | "default"
+    | "destructive"
+    | "outline"
+    | "secondary"
+    | "ghost"
+    | "link";
+  size?: "default" | "sm" | "lg" | "icon";
+  asChild?: boolean;
+}
 
 interface TimeRangePickerProps {
   initialStartTime?: string;
@@ -18,6 +30,6 @@ interface TimeRangePickerProps {
   labelClassName?: string;
 }
 
-declare const TimeRangePicker: React.FC<TimeRangePickerProps>;
+declare const TimeRangePicker: React$1.FC<TimeRangePickerProps>;
 
 export { type TimeRangePickerProps, TimeRangePicker as default };
