@@ -22,7 +22,7 @@ const generateTimeOptions = (step: number) => {
   return options;
 };
 
-interface TimeRangePickerProps {
+export interface TimeRangePickerProps {
   initialStartTime?: string;
   initialEndTime?: string;
   onTimeRangeChange?: (timeRange: string) => void;

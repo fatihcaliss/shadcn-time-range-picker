@@ -1,23 +1,35 @@
 {
   "name": "shadcn-time-range-picker",
-  "version": "1.1.6",
+  "version": "1.1.9",
   "main": "dist/index.js",
-  "types": "./dist/*.d.ts",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
   "files": [
     "dist"
   ],
   "scripts": {
-    "build": "tsup src/index.tsx --format esm,cjs --dts",
+    "build": "tsup src/index.tsx --format esm,cjs --dts --external react",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/fatihcaliss/shadcn-time-range-picker.git"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "react",
+    "time-picker",
+    "range-picker",
+    "time-range-picker",
+    "shadcn",
+    "ui",
+    "component",
+    "typescript",
+    "customizable",
+    "flexible"
+  ],
+  "author": "Fatih Calis",
   "license": "MIT",
-  "description": "",
+  "description": "A flexible and customizable time range picker component built with React and ShadCN UI",
   "devDependencies": {
     "@types/react": "^18.3.3",
     "tsup": "^8.2.4",
@@ -30,8 +42,10 @@
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
     "lucide-react": "^0.427.0",
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1",
     "tailwind-merge": "^2.5.0"
+  },
+  "peerDependencies": {
+    "react": "^16.8.0 || ^17.0.0 || ^18.0.0",
+    "react-dom": "^16.8.0 || ^17.0.0 || ^18.0.0"
   }
 }
